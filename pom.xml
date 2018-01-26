@@ -4,7 +4,7 @@
 
     <groupId>ar.gob.ambiente.rest</groupId>
     <artifactId>restSecurity</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <packaging>war</packaging>
 
     <name>restSecurity</name>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>paqSecurityRest</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
