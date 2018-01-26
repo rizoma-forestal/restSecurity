@@ -1,0 +1,11 @@
+ar\gob\ambiente\rest\restsecurity\entities\Producto.class
+ar\gob\ambiente\rest\restsecurity\service\AbstractFacade.class
+ar\gob\ambiente\rest\restsecurity\entities\Guia.class
+ar\gob\ambiente\rest\restsecurity\service\RestSecurityFilter.class
+ar\gob\ambiente\rest\restsecurity\service\GuiaFacadeREST.class
+ar\gob\ambiente\rest\restsecurity\service\PersonaFacadeREST.class
+ar\gob\ambiente\rest\restsecurity\service\ProductoFacadeREST.class
+ar\gob\ambiente\rest\restsecurity\service\ApplicationConfig.class
+ar\gob\ambiente\rest\restsecurity\service\UsuarioResource.class
+ar\gob\ambiente\rest\restsecurity\entities\Persona.class
+ar\gob\ambiente\rest\restsecurity\annotation\Secured.class

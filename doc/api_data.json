@@ -1,0 +1,395 @@
+[
+  {
+    "type": "put",
+    "url": "/guias/:id",
+    "title": "Actualiza una Guía existente",
+    "examples": [
+      {
+        "title": "Ejemplo de uso:",
+        "content": "curl -X PUT -d http://localhost:8080/restSecurity-1.0.0-SNAPSHOT/rest/guias/:id",
+        "type": "curl"
+      }
+    ],
+    "description": "<p>Método para editar una Guia existente Solo se editará el estado y la fecha correspondiente. Obtiene la Guía según el id recibido con el método local find(Long id) y posteriormente la edita con el método local edit(guia)</p>",
+    "version": "0.1.0",
+    "name": "PutGuia",
+    "group": "Guias",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Long",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID único que de la Guía a editar</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "ar.gob.ambiente.rest.restsecurity.entities.Guia",
+            "optional": false,
+            "field": "entity",
+            "description": "<p>Guía a editar de la dependencia paqSecurityRest.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Ok",
+            "description": "<p>La guía se actualizó con éxito</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "GuiaNoModificada",
+            "description": "<p>La Guía no fue modificada.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Respuesta de error:",
+          "content": "HTTP/1.1 304 Not Modified\n{\n  \"error\": \"Hubo un error procesado la actualización en el Componente de Trazabilidad\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/ar/gob/ambiente/rest/restsecurity/service/GuiaFacadeREST.java",
+    "groupTitle": "Guias"
+  },
+  {
+    "type": "get",
+    "url": "/productos/:id",
+    "title": "Obtiene un Producto con la id recibida",
+    "examples": [
+      {
+        "title": "Ejemplo de uso:",
+        "content": "curl -i -H \"Content-Type: application/json\" -X GET -d http://localhost:8080/restSecurity-1.0.0-SNAPSHOT/rest/productos/1",
+        "type": "curl"
+      }
+    ],
+    "version": "0.1.0",
+    "name": "GetProducto",
+    "group": "Productos",
+    "description": "<p>Método para obtener un Producto existente Obtiene los productos mediante el método local find(id)</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "ar.gob.ambiente.rest.paqsecurityrest.Producto",
+            "optional": false,
+            "field": "Producto",
+            "description": "<p>Detalle del producto registrado.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  {\n     \"clase\": \"ROLLO\",\n     \"id\": \"1\",\n     \"nombreCientifico\": \"Cordia trichotoma\",\n     \"nombreVulgar\": \"PETIRIBI\",\n     \"total\": \"123.0\",\n     \"unidad\": \"Tn\",\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ProductoNotFound",
+            "description": "<p>No existe producto registrado con ese id.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Not Found\n{\n  \"error\": \"No hay producto registrado con el id recibido\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/ar/gob/ambiente/rest/restsecurity/service/ProductoFacadeREST.java",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "get",
+    "url": "/productos",
+    "title": "Obtiene un listado con todos los Productos registrados",
+    "examples": [
+      {
+        "title": "Ejemplo de uso:",
+        "content": "curl -i -H \"Content-Type: application/json\" -X GET -d http://localhost:8080/restSecurity-1.0.0-SNAPSHOT/rest/productos",
+        "type": "curl"
+      }
+    ],
+    "version": "0.1.0",
+    "name": "GetProductos",
+    "group": "Productos",
+    "description": "<p>Método para obtener un listado de los Productos existentes Obtiene los productos mediante el método local findAll()</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "ar.gob.ambiente.rest.paqsecurityrest.Producto",
+            "optional": false,
+            "field": "Productos",
+            "description": "<p>Listado con todos los Productos registrados.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  {\n     \"clase\": \"ROLLO\",\n     \"id\": \"1\",\n     \"nombreCientifico\": \"Cordia trichotoma\",\n     \"nombreVulgar\": \"PETIRIBI\",\n     \"total\": \"123.0\",\n     \"unidad\": \"Tn\",\n  }\n  {\n     \"clase\": \"ROLLO\",\n     \"id\": \"2\",\n     \"nombreCientifico\": \"Phyllostylon rhamnoides\",\n     \"nombreVulgar\": \"RAMONES\",\n     \"total\": \"521.0\",\n     \"unidad\": \"Tn\",\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ProductosNotFound",
+            "description": "<p>No existen producto registrados.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Not Found\n{\n  \"error\": \"No hay Productos registrados\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/ar/gob/ambiente/rest/restsecurity/service/ProductoFacadeREST.java",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "post",
+    "url": "/productos",
+    "title": "Crea un nuevo Producto",
+    "examples": [
+      {
+        "title": "Ejemplo de uso:",
+        "content": "curl -d @data.json -H \"Content-Type: application/json\" -X POST -d http://localhost:8080/restSecurity-1.0.0-SNAPSHOT/rest/productos",
+        "type": "curl"
+      }
+    ],
+    "description": "<p>Método para insertar un Producto nuevo Instancia un objeto Producto (prod) y setea los valores de la entidad recibida como parámetro en el Producto instanciado. Posteriormente lo crea con el método local create(prod). Finalmente, construye la respuesta según la operación haya sido exitosa o no. En caso de ser exitosa, agrega a la respuesta la uri de acceso al Producto creado.</p>",
+    "version": "0.1.0",
+    "name": "PostProducto",
+    "group": "Productos",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ar.gob.ambiente.rest.paqsecurityrest.Producto",
+            "optional": false,
+            "field": "entity",
+            "description": "<p>clase de la dependencia paqSecurityRest que emula al Producto a crear.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "uri",
+            "description": "<p>Uri de acceso mediante GET al Producto creado.</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ProductoNoCreado",
+            "description": "<p>El Producto no fue creado.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Respuesta de error:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"error\": \"Hubo un error procesado la inserción del producto en el servidor.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/ar/gob/ambiente/rest/restsecurity/service/ProductoFacadeREST.java",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "put",
+    "url": "/productos/:id",
+    "title": "Actualiza un Producto existente",
+    "examples": [
+      {
+        "title": "Ejemplo de uso:",
+        "content": "curl -d @data.json -H \"Content-Type: application/json\" -X PUT -d http://localhost:8080/restSecurity-1.0.0-SNAPSHOT/rest/productos/:id",
+        "type": "curl"
+      }
+    ],
+    "description": "<p>Método para editar un Producto existente Se pueden editar todos los campos del Producto. Obtiene el Producto (prod) según el id recibido con el método local find(Long id), setea los valores de la entidad recibida como parámetro en el Producto obtenido y posteriormente lo edita con el método local edit(prod). Finalmente, construye la respuesta según la operación haya sido exitosa o no.</p>",
+    "version": "0.1.0",
+    "name": "PutProducto",
+    "group": "Productos",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Long",
+            "optional": false,
+            "field": "id",
+            "description": "<p>ID único que del Producto a editar</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "ar.gob.ambiente.rest.paqsecurityrest.Producto",
+            "optional": false,
+            "field": "entity",
+            "description": "<p>clase de la dependencia paqSecurityRest que emula al Producto a editar.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "Ok",
+            "description": "<p>El Productos se actualizó con éxito</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"uri\": \"http://localhost:8080/restSecurity-1.0.0-SNAPSHOT/rest/productos/:id\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "ProductoNoModificado",
+            "description": "<p>El Producto no fue modificado.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Respuesta de error:",
+          "content": "HTTP/1.1 304 Not Modified\n{\n  \"error\": \"Hubo un error procesado la actualización del Producto en el servidor.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/ar/gob/ambiente/rest/restsecurity/service/ProductoFacadeREST.java",
+    "groupTitle": "Productos"
+  },
+  {
+    "type": "get",
+    "url": "/user/:id",
+    "title": "Obtiene la información de un usuario",
+    "version": "0.1.0",
+    "name": "GetUser",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Users unique ID.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "code",
+            "description": "<p>Código 0 conforme todo ha ido bien.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Bool",
+            "optional": false,
+            "field": "true/false",
+            "description": "<p>True o false dependiendo del resultado.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": 0,\n  \"response\": true\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The id of the User was not found.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"error\": \"UserNotFound\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/main/java/ar/gob/ambiente/rest/restsecurity/service/GuiaFacadeREST.java",
+    "groupTitle": "User"
+  }
+]
